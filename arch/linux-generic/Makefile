@@ -34,9 +34,9 @@ ARCH     = linux-generic
 OBJ_DIR  = ./obj
 LIB_DIR  = ./lib
 DOC_DIR  = ./doc
+INC_DIR  = $(ODP_ROOT)/include
 LIB      = $(LIB_DIR)/odp.a
 
-INCLUDE  = -I$(ODP_ROOT)/include
 CC       = @gcc
 LD       = gcc
 AR       = ar
@@ -51,10 +51,9 @@ CFLAGS   =
 CFLAGS  += -pthread
 CFLAGS  += -I.
 CFLAGS  += -I./source
+CFLAGS  += -I$(INC_DIR)
 CFLAGS  += $(EXTRA_CFLAGS)
 CFLAGS  += $(E_FLAGS)
-CFLAGS  += $(INCLUDE)
-
 
 #
 # Object files
@@ -70,6 +69,7 @@ OBJS    += $(OBJ_DIR)/odp_shared_memory.o
 OBJS    += $(OBJ_DIR)/odp_spinlock.o
 OBJS    += $(OBJ_DIR)/odp_system_info.o
 OBJS    += $(OBJ_DIR)/odp_thread.o
+OBJS    += $(OBJ_DIR)/odp_queue.o
 
 
 DEPS     = $(OBJS:.o=.d)
@@ -119,7 +119,7 @@ Doxyfile: Doxyfile.in
 	doxygen -u - < $< > $@
 
 .PHONY: docs
-docs: $(DOC_DIR) Doxyfile $(ODP_ROOT)/include/odp*.h 
+docs: $(DOC_DIR) Doxyfile $(INC_DIR)/odp*.h
 	doxygen
 	make --directory doc/latex refman.pdf > /dev/null
 
