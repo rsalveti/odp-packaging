@@ -70,6 +70,8 @@ OBJS    += $(OBJ_DIR)/odp_spinlock.o
 OBJS    += $(OBJ_DIR)/odp_system_info.o
 OBJS    += $(OBJ_DIR)/odp_thread.o
 OBJS    += $(OBJ_DIR)/odp_queue.o
+OBJS    += $(OBJ_DIR)/odp_packet_io.o
+OBJS    += $(OBJ_DIR)/odp_packet_socket.o
 
 
 DEPS     = $(OBJS:.o=.d)
