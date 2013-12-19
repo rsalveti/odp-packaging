@@ -29,64 +29,57 @@
  */
 
 
-
-
-
-#include <odp_init.h>
-#include <odp_internal.h>
+#include <odp_time.h>
+#include <odp_hints.h>
+#include <odp_system_info.h>
 
 #include <stdio.h>
 
 
-int odp_init_global(void)
+#if defined __x86_64__ || defined __i386__
+
+uint64_t odp_time_get_cycles(void)
 {
-	odp_thread_init_global();
+	union {
+		uint64_t tsc_64;
+		struct {
+			uint32_t lo_32;
+			uint32_t hi_32;
+		};
+	} tsc;
 
-	odp_system_info_init();
+	asm volatile("rdtsc" :
+		     "=a" (tsc.lo_32),
+		     "=d" (tsc.hi_32));
 
-	if (odp_shm_init_global()) {
-		fprintf(stderr, "ODP shm init failed.\n");
-		return -1;
-	}
+	return tsc.tsc_64;
+}
 
-	if (odp_buffer_pool_init_global()) {
-		fprintf(stderr, "ODP buffer pool init failed.\n");
-		return -1;
-	}
+#else
 
-	if (odp_queue_init_global()) {
-		fprintf(stderr, "ODP queue init failed.\n");
-		return -1;
-	}
-
-	if (odp_schedule_init_global()) {
-		fprintf(stderr, "ODP schedule init failed.\n");
-		return -1;
-	}
-
-	if (odp_pktio_init_global()) {
-		fprintf(stderr, "ODP packet io init failed.\n");
-		return -1;
-	}
-
+uint64_t odp_time_get_cycles(void)
+{
+	/* printf("odp_time_get_cycles(): implementation missing\n"); */
 	return 0;
 }
 
+#endif
 
 
-int odp_init_local(int thr_id)
+uint64_t odp_time_diff_cycles(uint64_t t1, uint64_t t2)
 {
-	odp_thread_init_local(thr_id);
+	if (odp_likely(t2 > t1))
+		return t2 - t1;
 
-	if (odp_pktio_init_local()) {
-		fprintf(stderr, "ODP packet io local init failed.\n");
-		return -1;
-	}
-
-	return 0;
+	return t2 + (UINT64_MAX - t1);
 }
 
 
+uint64_t odp_time_cycles_to_ns(uint64_t cycles)
+{
+	uint64_t hz = odp_sys_cpu_hz();
 
+	return (cycles*1000000000)/hz;
+}
 
 

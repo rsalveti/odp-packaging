@@ -30,63 +30,25 @@
 
 
 
+#ifndef ODP_SCHEDULE_INTERNAL_H_
+#define ODP_SCHEDULE_INTERNAL_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
-#include <odp_init.h>
-#include <odp_internal.h>
-
-#include <stdio.h>
+#include <odp_queue.h>
 
 
-int odp_init_global(void)
-{
-	odp_thread_init_global();
+void odp_schedule_queue(odp_queue_t queue, int prio);
 
-	odp_system_info_init();
 
-	if (odp_shm_init_global()) {
-		fprintf(stderr, "ODP shm init failed.\n");
-		return -1;
-	}
 
-	if (odp_buffer_pool_init_global()) {
-		fprintf(stderr, "ODP buffer pool init failed.\n");
-		return -1;
-	}
-
-	if (odp_queue_init_global()) {
-		fprintf(stderr, "ODP queue init failed.\n");
-		return -1;
-	}
-
-	if (odp_schedule_init_global()) {
-		fprintf(stderr, "ODP schedule init failed.\n");
-		return -1;
-	}
-
-	if (odp_pktio_init_global()) {
-		fprintf(stderr, "ODP packet io init failed.\n");
-		return -1;
-	}
-
-	return 0;
+#ifdef __cplusplus
 }
+#endif
 
-
-
-int odp_init_local(int thr_id)
-{
-	odp_thread_init_local(thr_id);
-
-	if (odp_pktio_init_local()) {
-		fprintf(stderr, "ODP packet io local init failed.\n");
-		return -1;
-	}
-
-	return 0;
-}
-
-
-
+#endif
 
 
