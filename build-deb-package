@@ -24,7 +24,7 @@ cp -r ${ROOT_DIR}/pkg/debian .
 
 current=$(grep "^ODP_LIBSO_VERSION" ./configure.ac| \
 	awk -F'=' '{print $2}' |awk -F : '{print $1}')
-rename 's,(.*linux)(.*),${1}'"${current}"'${2},' debian/*odp*-linux.install
+rename 's,(.*linux)(.*),${1}'"${current}"'${2},' debian/*odp*-linux.*
 
 sed -i "s:\(libodp[a-zA-Z\-]\+linux\)\(-dbg\|$\| \):\1${current}\2:g" debian/control
 sed -i "s:\(libodp[a-zA-Z\-]\+linux\)\(-dbg\| \):\1${current}\2:g" debian/rules
