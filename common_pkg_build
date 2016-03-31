@@ -5,8 +5,8 @@ set -e
 clone_repository() {
 	rm -rf ${ROOT_DIR}/odp
 	pushd ${ROOT_DIR}
-	GIT_URL=git://git.linaro.org/lng/odp.git
-	GIT_BRANCH=master
+	GIT_URL=${GIT_URL:-git://git.linaro.org/lng/odp.git}
+	GIT_BRANCH=${GIT_BRANCH:-master}
 	git clone -b ${GIT_BRANCH} ${GIT_URL}
 	popd
 }
