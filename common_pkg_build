@@ -2,14 +2,24 @@
 
 set -e
 
+clone_repository() {
+	rm -rf ${ROOT_DIR}/odp
+	pushd ${ROOT_DIR}
+	GIT_URL=git://git.linaro.org/lng/odp.git
+	GIT_BRANCH=master
+	git clone -b ${GIT_BRANCH} ${GIT_URL}
+	popd
+}
+
 prepare_tarball() {
 	export package=opendataplane
 
 	pushd ${ROOT_DIR}
+	pushd ${ROOT_DIR}/odp
 
-	if [[ -d ${ROOT_DIR}/.git ]]; then
-		. scripts/git_hash.sh ${ROOT_DIR}
-		version=$(cat ${ROOT_DIR}/.scmversion)
+	if [[ -d ${ROOT_DIR}/odp/.git ]]; then
+		. scripts/git_hash.sh ${ROOT_DIR}/odp
+		version=$(cat .scmversion)
 	else
 		echo "This script isn't expected to be used without"
 		echo "a git repository."
@@ -23,8 +33,8 @@ prepare_tarball() {
 		SCMTMP=`mktemp -d`
 		pushd $SCMTMP
 		mkdir ${package}-${version}
-		cp ${ROOT_DIR}/.scmversion ${package}-${version}
-		tar --update -v -f ${ROOT_DIR}/${package}-${version}.tar ${package}-${version}
+		cp ${ROOT_DIR}/odp/.scmversion ${package}-${version}
+		tar --update -v -f ${ROOT_DIR}/odp/${package}-${version}.tar ${package}-${version}
 		popd
 		rm -rf $SCMTMP
 		gzip ${package}-${version}.tar
@@ -34,6 +44,7 @@ prepare_tarball() {
 		make dist
 	fi
 
-	cp ${package}-${version}.tar.gz ${package}_${version}.orig.tar.gz
+	popd
+	cp ${ROOT_DIR}/odp/${package}-${version}.tar.gz ${package}_${version}.orig.tar.gz
 	tar xzf ${package}_${version}.orig.tar.gz
 }
