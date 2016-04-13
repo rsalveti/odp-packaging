@@ -57,7 +57,6 @@ and guides in HTMLformats.
 %make_install
 
 %files
-%{_datadir}/*
 %{_bindir}/*
 %{_libdir}/*
 
