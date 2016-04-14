@@ -6,7 +6,7 @@
 Name: opendataplane
 Version: 1.4
 Release: 1
-Packager: anders.roxell@linaro.org
+Packager: lng-odp@lists.linaro.org
 URL: http://opendataplane.org
 Source: %{name}-%{version}.tar.gz
 Summary: OpenDataPlane Reference implementation

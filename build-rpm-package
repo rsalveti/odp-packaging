@@ -22,7 +22,7 @@ cp ${ROOT_DIR}/odp/${package}-${version}.tar.gz ${ROOT_DIR}/rpm/SOURCES/
 cp ${ROOT_DIR}/pkg/rpm/odp.spec ${ROOT_DIR}/rpm/odp.spec
 if [ $(egrep "\.([a-z0-9]{8}\>|dirty)" odp/.scmversion |wc -l) -gt 0 ]; then
 	creation_date=$(date '+%a %b %e %G')
-	RPMEMAIL="donald.duck (at) linaro.org"
+	RPMEMAIL="lng-odp (at) lists.linaro.org"
 	sed -i -e "s/changelog/changelog\n* ${creation_date} - ${RPMEMAIL}\n- not a official release\!/g" ${ROOT_DIR}/rpm/odp.spec
 fi
 sed -i "s|^Version: .*$|Version: ${version}|g" ${ROOT_DIR}/rpm/odp.spec
