@@ -9,6 +9,10 @@ source ${ROOT_DIR}/common_pkg_build
 # debuild default options
 DEB_OPTS="-us -uc"
 
+# Run parallel build by default
+ncpu=$(getconf _NPROCESSORS_ONLN)
+DEB_OPTS="$DEB_OPTS -j$ncpu"
+
 clone_repository
 
 # Also allow the user to create just the source package (skip build process)
