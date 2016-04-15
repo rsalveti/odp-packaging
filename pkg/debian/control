@@ -9,8 +9,8 @@ Build-Depends: debhelper (>= 9), dh-autoreconf, libssl-dev, doxygen,
 Standards-Version: 3.9.6
 Section: libs
 Homepage: http://www.opendataplane.org/
-Vcs-Git: git://git.linaro.org/lng/odp.git
-Vcs-Browser: https://git.linaro.org/lng/odp.git
+Vcs-Git: http://git.linaro.org/lng/odp-packaging.git
+Vcs-Browser: http://git.linaro.org/lng/odp-packaging.git
 
 Package: odp-linux-bin
 Section: devel
