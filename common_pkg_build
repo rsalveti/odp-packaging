@@ -14,7 +14,6 @@ clone_repository() {
 prepare_tarball() {
 	export package=opendataplane
 
-	pushd ${ROOT_DIR}
 	pushd ${ROOT_DIR}/odp
 
 	if [[ -d ${ROOT_DIR}/odp/.git ]]; then

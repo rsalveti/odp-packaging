@@ -4,6 +4,7 @@ set -e
 
 export ROOT_DIR=$(readlink -e $(dirname $0))
 
+pushd ${ROOT_DIR}
 source ${ROOT_DIR}/common_pkg_build
 
 # debuild default options
