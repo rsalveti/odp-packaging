@@ -45,5 +45,5 @@ prepare_tarball() {
 	fi
 
 	popd
-	cp ${PKG_DIR}/${package}-${version}.tar.gz ${package}_${version}.orig.tar.gz
+	cp ${PKG_DIR}/${package}-${version}.tar.gz ${ROOT_DIR}/${package}-${version}.tar.gz
 }

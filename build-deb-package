@@ -24,6 +24,9 @@ else
 	prepare_tarball
 fi
 
+cp ${ROOT_DIR}/${package}-${version}.tar.gz ${ROOT_DIR}/${package}_${version}.orig.tar.gz
+tar xzf ${package}_${version}.orig.tar.gz
+
 pushd ${ROOT_DIR}/${package}-${version}
 cp -r ${ROOT_DIR}/pkg/debian .
 

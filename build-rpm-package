@@ -19,7 +19,7 @@ rm -rf ${ROOT_DIR}/rpm/BUILD/${package}-root
 rm -rf ${ROOT_DIR}/rpm/RPMS/${package}*
 rm -rf ${ROOT_DIR}/rpm/SRPMS/${package}*
 rm -rf ${ROOT_DIR}/rpm/SOURCES/${package}*
-cp ${PKG_DIR}/${package}-${version}.tar.gz ${ROOT_DIR}/rpm/SOURCES/
+cp ${ROOT_DIR}/${package}-${version}.tar.gz ${ROOT_DIR}/rpm/SOURCES/
 cp ${ROOT_DIR}/pkg/rpm/odp.spec ${ROOT_DIR}/rpm/odp.spec
 if [ $(egrep "\.([a-z0-9]{8}\>|dirty)" odp/.scmversion |wc -l) -gt 0 ]; then
 	creation_date=$(date '+%a %b %e %G')
