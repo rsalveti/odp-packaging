@@ -5,7 +5,7 @@ set -e
 clone_repository() {
 	rm -rf ${ROOT_DIR}/odp
 	pushd ${ROOT_DIR}
-	PKG_URL=${PKG_URL:-git://git.linaro.org/lng/odp.git}
+	PKG_URL=${PKG_URL:-git://git.linaro.org/lng/odp-dpdk.git}
 	PKG_BRANCH=${PKG_BRANCH:-master}
 	PKG_DIR=${PKG_DIR:-${ROOT_DIR}/odp}
 	git clone -b ${PKG_BRANCH} ${PKG_URL} ${PKG_DIR}

@@ -5,14 +5,14 @@ Uploaders: Anders Roxell <anders.roxell@linaro.org>, Fathi Boudra <fabo@debian.o
 Build-Depends: debhelper (>= 9), dh-autoreconf, libssl-dev, doxygen,
     imagemagick, libmagickcore-6.q16-2-extra | libmagickcore-extra,
     ghostscript, asciidoc, mscgen, texlive-latex-recommended, graphviz,
-    libcunit1-dev, libpcap-dev
+    libcunit1-dev, libpcap-dev, libdpdk-dev
 Standards-Version: 3.9.6
 Section: libs
 Homepage: http://www.opendataplane.org/
 Vcs-Git: http://git.linaro.org/lng/odp-packaging.git
 Vcs-Browser: http://git.linaro.org/lng/odp-packaging.git
 
-Package: odp-linux-bin
+Package: odp-dpdk-bin
 Section: devel
 Architecture: any
 Multi-Arch: allowed
@@ -20,26 +20,26 @@ Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Example binaries for OpenDataPlane
  These are the executable examples from the reference implementation.
 
-Package: libodp-linux-dbg
+Package: libodp-dpdk-dbg
 Priority: extra
 Section: debug
 Architecture: any
 Multi-Arch: same
-Depends: libodp-linux (= ${binary:Version}), ${misc:Depends}
+Depends: libodp-dpdk (= ${binary:Version}), ${misc:Depends}
 Description: Debug symbols for OpenDataPlane
  This is the OpenDataPlane library from the reference implementation
  with debug turned on.
 
-Package: libodp-linux-dev
+Package: libodp-dpdk-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libodp-linux (= ${binary:Version}), ${misc:Depends},
-    libodphelper-linux-dev, libssl-dev
+Depends: libodp-dpdk (= ${binary:Version}), ${misc:Depends},
+    libodphelper-linux-dev, libssl-dev, libdpdk-dev
 Description: Development files for OpenDataPlane
  These are the source file for the OpenDataPlane reference implementation.
 
-Package: libodp-linux
+Package: libodp-dpdk
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends}, ${shlibs:Depends}, libodphelper-linux

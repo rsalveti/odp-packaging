@@ -32,10 +32,14 @@ cp -r ${ROOT_DIR}/pkg/debian .
 
 current=$(grep "^ODP_LIBSO_VERSION" ./configure.ac| \
 	awk -F'=' '{print $2}' |awk -F : '{print $1}')
-rename 's,(.*linux)(.*),${1}'"${current}"'${2},' debian/*odp*-linux.*
+rename 's,(.*odp-dpdk)(.*),${1}'"${current}"'${2},' debian/*odp-dpdk*
 
 sed -i "s:\(libodp[a-zA-Z\-]\+linux\)\(-dbg\|$\| \):\1${current}\2:g" debian/control
 sed -i "s:\(libodp[a-zA-Z\-]\+linux\)\(-dbg\| \):\1${current}\2:g" debian/rules
+
+# DPDK Specific
+sed -i "s:\(libodp-dpdk\)\(-dbg\|$\| \):\1${current}\2:g" debian/control
+sed -i "s:\(libodp-dpdk\)\(-dbg\| \):\1${current}\2:g" debian/rules
 
 if [ $(egrep "\.([a-z0-9]{8}\>|dirty)" .scmversion |wc -l) -gt 0 ]; then
 	export DEBFULLNAME="LNG ODP"
