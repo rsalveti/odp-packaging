@@ -1,4 +1,4 @@
-Source: opendataplane
+Source: opendataplane-dpdk
 Priority: optional
 Maintainer: LNG ODP <lng-odp@lists.linaro.org>
 Uploaders: Anders Roxell <anders.roxell@linaro.org>, Fathi Boudra <fabo@debian.org>
@@ -17,7 +17,7 @@ Section: devel
 Architecture: any
 Multi-Arch: allowed
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Example binaries for OpenDataPlane
+Description: Example binaries for OpenDataPlane DPDK
  These are the executable examples from the reference implementation.
 
 Package: libodp-dpdk-dbg
@@ -26,8 +26,8 @@ Section: debug
 Architecture: any
 Multi-Arch: same
 Depends: libodp-dpdk (= ${binary:Version}), ${misc:Depends}
-Description: Debug symbols for OpenDataPlane
- This is the OpenDataPlane library from the reference implementation
+Description: Debug symbols for OpenDataPlane DPDK
+ This is the OpenDataPlane library from the DPDK implementation
  with debug turned on.
 
 Package: libodp-dpdk-dev
@@ -36,15 +36,15 @@ Architecture: any
 Multi-Arch: same
 Depends: libodp-dpdk (= ${binary:Version}), ${misc:Depends},
     libodphelper-linux-dev, libssl-dev, libdpdk-dev
-Description: Development files for OpenDataPlane
- These are the source file for the OpenDataPlane reference implementation.
+Description: Development files for OpenDataPlane DPDK
+ These are the source file for the OpenDataPlane DPDK implementation.
 
 Package: libodp-dpdk
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends}, ${shlibs:Depends}, libodphelper-linux
-Description: Library for OpenDataPlane
- This is the OpenDataPlane library from the reference implementation.
+Description: Library for OpenDataPlane DPDK
+ This is the OpenDataPlane library from the DPDK implementation.
 
 Package: libodphelper-linux-dbg
 Priority: extra
